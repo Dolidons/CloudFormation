@@ -1,0 +1,40 @@
+DevWebVPC:
+   Type: AWS::EC2::VPC
+   Properties:
+   CidrBlock: 10.0.0.0/16
+   EnableDnsSupport: true
+   Tags:
+      - Key: Name
+        Value: DevWebVPC
+
+WebServer:
+   Type: AWS::EC2::Subnet
+   Properties:
+   AvailabilityZone: us-east-1a
+   VpcId: vpc-id
+   CidrBlock: 10.0.1.0/24
+    Tags:
+      - Key: Name
+        Value: WebServer
+
+        AppServer:
+          Type: AWS::EC2::Subnet
+          Properties:
+            AvailabilityZone: us-east-1b
+            VpcId: vpc-id
+            CidrBlock: 10.0.2.0/24
+            Tags:
+              - Key: Name
+                Value: AppServer
+
+Database:
+  Type: AWS::EC2::Subnet
+  Properties:
+    AvailabilityZone: us-west-1b
+    VpcId: vpc-id
+    CidrBlock: 10.0.3.0/24
+    Tags:
+      - Key: Name
+        Value: Database
+
+Outputs: {}
